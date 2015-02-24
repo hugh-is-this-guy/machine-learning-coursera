@@ -20,13 +20,50 @@ grad = zeros(size(theta));
 % Note: grad should have the same dimensions as theta
 %
 
+m = length(y);
+
+% J
+
+sigma = 0;
+
+for i = 1:m
+    theta_x = theta' * X(i,:)';
+    h_theta_x = sigmoid(theta_x);
+    lhs = ((-y(i)) * (log(h_theta_x)));
+    rhs = (1 - y(i)) * (log(1 - h_theta_x));
+    sigma += (lhs - rhs);
+endfor
+
+J = (1/m) * sigma;
+disp("J:"), disp(J);
+
+% grad
+
+for j = 1:length(theta);
+    sigma = 0;
+    for i = 1:m
+        h_y = sigmoid(theta' * X(i,:)') - y(i);
+        sigma += h_y * X(i,j);
+    endfor
+    grad(j) = (1 / m) * sigma;
+endfor
 
 
-
-
-
-
+disp("grad:"), disp(grad);
 
 % =============================================================
 
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
