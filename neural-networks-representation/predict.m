@@ -21,12 +21,20 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
+% Add ones to X for hidden input's bias input
+X = [ones(m, 1) X];
 
+% Cacluate activatons of hidden layer
+z = X * Theta1'; a1 = sigmoid(z);
 
+% Add ones to activations for output layer's bias input
+m = size(a1, 1);
+a1 = [ones(m, 1) a1];
 
+z = a1 * Theta2'; a2 = sigmoid(z);
 
-
-
+% Find collumn with max value for predictions
+[val, p] = max(a2, [], 2);
 
 
 % =========================================================================
