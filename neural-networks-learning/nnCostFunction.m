@@ -63,9 +63,20 @@ Theta2_grad = zeros(size(Theta2));
 %
 
 
+X = [ones(rows(X), 1) X];
 
+for i = 1 : rows(X)
+    for k = 1 : num_labels
+        a1 = X(i,:)';
+        z2 = Theta1 * a1;
 
+        a2 = sigmoid(z2);
+        a2 = [ 1; a2 ]; % Add bias input
 
+        z3 = Theta2(k,:) * a2; % Get output of kth element only
+        h_theta_x = sigmoid(z3);
+    endfor
+endfor
 
 
 
