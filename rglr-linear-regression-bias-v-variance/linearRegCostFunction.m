@@ -20,14 +20,14 @@ grad = zeros(size(theta));
 %
 
 
+% Cost
 
+h0x = X * theta;
+sigma = sum((h0x .- y) .^ 2);
 
+reg = (lambda / (2*m)) * sum(theta(2:end) .^ 2);
 
-
-
-
-
-
+J = (1/(2*m) * sigma) + reg;
 
 
 % =========================================================================
