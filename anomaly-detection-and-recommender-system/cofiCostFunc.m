@@ -49,6 +49,14 @@ X_grad = ((predictions .* R) .- (Y .* R)) * Theta;
 Theta_grad = ((predictions .* R) .- (Y .* R))' * X;
 
 
+% Regularised cost and gradient
+
+J += (lambda / 2) * sum(sum(Theta .^ 2));
+J += (lambda / 2) * sum(sum(X .^ 2));
+
+X_grad += X .* lambda;
+Theta_grad += Theta .* lambda;
+
 % =============================================================
 
 grad = [X_grad(:); Theta_grad(:)];
