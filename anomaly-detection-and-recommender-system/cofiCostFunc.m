@@ -45,6 +45,10 @@ predictions = X * Theta';
 
 J = sum(sum(((predictions .* R) .- (Y .* R)) .^ 2)) / 2;
 
+X_grad = ((predictions .* R) .- (Y .* R)) * Theta;
+Theta_grad = ((predictions .* R) .- (Y .* R))' * X;
+
+
 % =============================================================
 
 grad = [X_grad(:); Theta_grad(:)];
